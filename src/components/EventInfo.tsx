@@ -13,7 +13,7 @@ const EventInfo = ({ event }: { event: Event }) => {
   return (
     <Box display='flex' flexDirection={'row'} gap={3} h={'5.5rem'}>
       <Box
-        w={72}
+        w={[32, 32, 72]}
         h={'100%'}
         bg='#1B1B23'
         borderRadius='10px'
@@ -24,7 +24,7 @@ const EventInfo = ({ event }: { event: Event }) => {
         gap={8}
       >
         <Text
-          fontSize='2rem'
+          fontSize={['0.8rem', '0.8rem', '2rem']}
           color='white'
           textAlign='center'
           fontWeight='bold'
@@ -35,7 +35,7 @@ const EventInfo = ({ event }: { event: Event }) => {
         </Text>
       </Box>
       <Box
-        w={'28rem'}
+        w={['30%', '28rem']}
         h={'100%'}
         bg={'#1B1B23'}
         borderRadius='10px'
@@ -46,7 +46,7 @@ const EventInfo = ({ event }: { event: Event }) => {
         gap={8}
       >
         <Text
-          fontSize='2rem'
+          fontSize={['0.8rem', '0.8rem', '2rem']}
           color='white'
           textAlign='center'
           fontWeight='bold'
@@ -67,7 +67,7 @@ const EventInfo = ({ event }: { event: Event }) => {
         gap={8}
       >
         <Text
-          fontSize='2.25rem'
+          fontSize={['1rem', '1rem', '2.25em']}
           color='white'
           textAlign='center'
           fontWeight='bold'

@@ -36,6 +36,7 @@ export default function Home({ events }: { events: Event[] }) {
   }
 
   const getNotices = async () => {
+    console.log('notice invoke')
     await axios
       .get('/api/notices')
       .then((res) => {
@@ -48,6 +49,7 @@ export default function Home({ events }: { events: Event[] }) {
   }
 
   const getBooths = async () => {
+    console.log('booth invoke')
     await axios
       .get('/api/booths/list')
       .then((res) => {
@@ -107,11 +109,11 @@ export default function Home({ events }: { events: Event[] }) {
         <Box w='100%' h='100%' minHeight={'100vh'}>
           <Box
             w='100%'
-            h='94vh'
+            h={['100%', '100%', '94vh']}
             bg='#f5f5f5'
             px={2}
             py={2}
-            mb={0}
+            mb={[32, 32, 0]}
             display='flex'
             flexDirection='column'
             justifyContent='start'
@@ -144,21 +146,25 @@ export default function Home({ events }: { events: Event[] }) {
                     <img src='/header_mieet.png' alt='kita' />
                   </Flex>
                 </Box>
-                <Flex direction='row' justify='space-between' mt={[32, 0]}>
-                  <Box flex='1' pr={2}>
+                <Flex
+                  direction={['column', 'column', 'row']}
+                  justify='space-between'
+                  mt={[8, 0]}
+                >
+                  <Box flex={['0', '1', '1']} pr={[0, 2, 2]}>
                     {booths
                       .slice(index * 14, index * 14 + 7)
                       .map((booth: Booth, i: any) => (
-                        <Box key={i} mb={[32, 4]}>
+                        <Box key={i} mb={[20, 4]}>
                           <BoothInfo booth={booth} />
                         </Box>
                       ))}
                   </Box>
-                  <Box flex='1' pl={2}>
+                  <Box flex={['0', '1', '1']} pl={[0, 2, 2]}>
                     {booths
                       .slice(index * 14 + 7, index * 14 + 14)
                       .map((booth: Booth, i: any) => (
-                        <Box key={i} mb={[32, 4]}>
+                        <Box key={i} mb={[20, 4]}>
                           <BoothInfo booth={booth} />
                         </Box>
                       ))}
