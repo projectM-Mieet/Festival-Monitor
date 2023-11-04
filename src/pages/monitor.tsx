@@ -104,14 +104,14 @@ export default function Home({ events }: { events: Event[] }) {
   return (
     <>
       <main>
-        <Box w='100%' h='auto' minHeight={'100vh'}>
+        <Box w='100%' h='100%' minHeight={'100vh'}>
           <Box
             w='100%'
-            h='auto'
+            h='94vh'
             bg='#f5f5f5'
             px={2}
-            py={4}
-            mb={8}
+            py={2}
+            mb={0}
             display='flex'
             flexDirection='column'
             justifyContent='start'
@@ -140,7 +140,7 @@ export default function Home({ events }: { events: Event[] }) {
             {index != Math.ceil(booths.length / 14) && (
               <>
                 <Box h='32'>
-                  <Flex justifyContent={'center'} mb={4} height={48}>
+                  <Flex justifyContent={'center'} mb={4} height={32}>
                     <img src='/header_mieet.png' alt='kita' />
                   </Flex>
                 </Box>
@@ -174,6 +174,7 @@ export default function Home({ events }: { events: Event[] }) {
             justifyContent='start'
             alignItems='center'
             width='100%'
+            mt={-2}
           >
             <Box width='100%' overflow='hidden' position='relative'>
               <Text

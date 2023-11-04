@@ -59,8 +59,10 @@ const BoothSetting: NextPageWithLayout = () => {
 
   const handleUpdate = async (index: number) => {
     setIsSubmitting(true)
+    console.log(datas[index])
     await axios
-      .post(`/api/booths`, {
+      .post(`/api/booths/${datas[index].id}`, {
+        id: datas[index].id,
         status: status[index],
         waiting: status[index] === 'open' ? waiting[index] : 0,
       })
