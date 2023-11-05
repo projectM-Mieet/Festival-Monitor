@@ -64,7 +64,10 @@ const BoothSetting: NextPageWithLayout = () => {
       .post(`/api/booths/${datas[index].id}`, {
         id: datas[index].id,
         status: status[index],
-        waiting: status[index] === 'open' ? waiting[index] : 0,
+        waiting:
+          status[index] === 'open' || status[index] === 'sale'
+            ? waiting[index]
+            : 0,
       })
       .then((res) => {
         setIsSubmitting(false)
@@ -161,9 +164,10 @@ const BoothSetting: NextPageWithLayout = () => {
                 <option value='closed'>閉店</option>
                 <option value='preparing'>準備中</option>
                 <option value='break'>中断中</option>
+                <option value='sale'>セール中</option>
               </Select>
             </Box>
-            {status[i] === 'open' && (
+            {(status[i] === 'open' || 'sale') && (
               <Box
                 display='flex'
                 flexDirection='column'

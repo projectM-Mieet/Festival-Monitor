@@ -6,6 +6,6 @@ export interface Booth {
   floor?: string
   area?: string
   memo?: string
-  status: 'open' | 'closed' | 'break' | 'preparing'
+  status: 'open' | 'closed' | 'break' | 'preparing' | 'sale'
   waiting: number
 }

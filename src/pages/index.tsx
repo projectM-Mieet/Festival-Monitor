@@ -155,6 +155,7 @@ const Home: NextPageWithLayout = () => {
               <option value='closed'>閉店</option>
               <option value='preparing'>準備中</option>
               <option value='break'>中断中</option>
+              <option value='sale'>セール中</option>
             </Select>
           </Box>
           {status === 'open' && (

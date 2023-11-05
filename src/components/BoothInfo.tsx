@@ -11,7 +11,7 @@ import { Booth } from '@/types/booth'
 
 const BoothInfo = ({ booth }: { booth: Booth }) => {
   const statusToString = (
-    status: 'open' | 'closed' | 'break' | 'preparing'
+    status: 'open' | 'closed' | 'break' | 'preparing' | 'sale'
   ) => {
     if (status === 'open') {
       return '開催中'
@@ -21,10 +21,12 @@ const BoothInfo = ({ booth }: { booth: Booth }) => {
       return '中断中'
     } else if (status === 'preparing') {
       return '準備中'
+    } else if (status === 'sale') {
+      return '✨セール中！！✨'
     }
   }
-  const waitingTimeToColor = (waitingTime: number) => {
-    if (waitingTime >= 30) {
+  const waitingTimeToColor = (waitingTime: number, booth?: Booth) => {
+    if (waitingTime >= 30 || (booth && booth.status === 'sale')) {
       // 鮮やかな赤からオレンジへのグラデーション
       return 'linear-gradient(135deg, #EA3323 0%, #F06D65 50%, #FF6347 100%)'
     } else if (waitingTime >= 20) {
@@ -49,7 +51,7 @@ const BoothInfo = ({ booth }: { booth: Booth }) => {
       <Box
         flex={1}
         h={['auto', 'auto', '100%']}
-        bg='#1B1B23'
+        bgGradient='linear(to-r, #1B1B23, #2D2D3F, #434357)'
         borderRadius='10px'
         display='flex'
         flexDirection={['column', 'column', 'row']}
@@ -61,7 +63,9 @@ const BoothInfo = ({ booth }: { booth: Booth }) => {
           w={['100%', '100%', 64]}
           h={['auto', 'auto', '100%']}
           ml={2}
-          bg='#393939'
+          bgGradient={
+            'linear-gradient(135deg, #16a34a 0%, #4AE371 50%, #80FFA1 100%)'
+          }
           borderRadius='10px'
           display='flex'
           flexDirection={['row', 'row', 'column']}
@@ -137,8 +141,8 @@ const BoothInfo = ({ booth }: { booth: Booth }) => {
         w={['100%', '100%', 72]}
         h={['auto', 'auto', '100%']}
         bg={
-          booth.status === 'open'
-            ? waitingTimeToColor(booth.waiting)
+          booth.status === 'open' || booth.status === 'sale'
+            ? waitingTimeToColor(booth.waiting, booth)
             : 'linear-gradient(135deg, #1B1B23 0%, #23232b 100%)'
         }
         borderRadius='10px'
@@ -184,15 +188,56 @@ const BoothInfo = ({ booth }: { booth: Booth }) => {
             )}
           </Text>
         ) : (
-          <Text
-            fontSize={['1.35rem', '1.5rem']}
-            color='white'
-            textAlign='center'
-            fontWeight='bold'
-            lineHeight={'100%'}
-          >
-            {statusToString(booth.status)}
-          </Text>
+          <>
+            <Text
+              fontSize={['1.35rem', '1.5rem']}
+              color='white'
+              textAlign='center'
+              fontWeight='bold'
+              lineHeight={'100%'}
+            >
+              {statusToString(booth.status)}
+            </Text>
+            {booth.status === 'sale' ? (
+              <Text
+                fontSize={['1.35rem', '1.5rem']}
+                color='white'
+                textAlign='center'
+                fontWeight='bold'
+                lineHeight={'100%'}
+              >
+                {' '}
+                {booth.waiting}
+                {booth.waiting >= 30 ? (
+                  <Text
+                    fontSize={['1.35rem', '1.5rem']}
+                    color='white'
+                    textAlign='center'
+                    fontWeight='bold'
+                    lineHeight={'100%'}
+                    as='span'
+                    ml={1}
+                  >
+                    分以上待ち
+                  </Text>
+                ) : (
+                  <Text
+                    fontSize={['1.35rem', '1.5rem']}
+                    color='white'
+                    textAlign='center'
+                    fontWeight='bold'
+                    lineHeight={'100%'}
+                    as='span'
+                    ml={1}
+                  >
+                    分待ち
+                  </Text>
+                )}
+              </Text>
+            ) : (
+              <></>
+            )}
+          </>
         )}
         <Box>
           <Text fontSize={['1rem', '1.2rem']} color='white' fontWeight='bold'>
