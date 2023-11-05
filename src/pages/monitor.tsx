@@ -14,7 +14,7 @@ dayjs.tz.setDefault('Asia/Tokyo')
 
 // Your internal project modules
 import BoothItem from '@/components/BoothItem'
-import EventItem from '@/components/EentItem'
+import EventItem from '@/components/EventItem'
 import Loading from '@/components/Loading'
 import { monitorSettings } from '@/libs/constants'
 import { db } from '@/libs/firebaseAdmin'
