@@ -15,7 +15,7 @@ const EventInfo = ({ event }: { event: Event }) => {
       <Box
         w={[32, 32, 72]}
         h={'100%'}
-        bg='#1B1B23'
+        bgGradient='linear-gradient(135deg, #2952BD 0%, #537BC4 50%, #7FA6DB 100%)'
         borderRadius='10px'
         display='flex'
         justifyContent='center'
@@ -37,7 +37,7 @@ const EventInfo = ({ event }: { event: Event }) => {
       <Box
         w={['30%', '28rem']}
         h={'100%'}
-        bg={'#1B1B23'}
+        bgGradient='linear-gradient(135deg, #16a34a 0%, #4AE371 50%, #80FFA1 100%)'
         borderRadius='10px'
         display='flex'
         justifyContent='center'
@@ -58,7 +58,7 @@ const EventInfo = ({ event }: { event: Event }) => {
       <Box
         flex={1}
         h={'100%'}
-        bg='#1B1B23'
+        bgGradient='linear-gradient(135deg, #2952BD 0%, #537BC4 50%, #7FA6DB 100%)'
         borderRadius='10px'
         display='flex'
         justifyContent='center'

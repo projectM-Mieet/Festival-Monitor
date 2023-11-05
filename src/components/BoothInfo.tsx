@@ -25,13 +25,17 @@ const BoothInfo = ({ booth }: { booth: Booth }) => {
   }
   const waitingTimeToColor = (waitingTime: number) => {
     if (waitingTime >= 30) {
-      return '#EA3323'
+      // 鮮やかな赤からオレンジへのグラデーション
+      return 'linear-gradient(135deg, #EA3323 0%, #F06D65 50%, #FF6347 100%)'
     } else if (waitingTime >= 20) {
-      return '#f7971e'
+      // 暖色のオレンジから黄色へのグラデーション
+      return 'linear-gradient(135deg, #f7971e 0%, #FFB84D 50%, #FFD480 100%)'
     } else if (waitingTime >= 10) {
-      return '#16a34a'
+      // 鮮やかな緑からライトグリーンへのグラデーション
+      return 'linear-gradient(135deg, #16a34a 0%, #4AE371 50%, #80FFA1 100%)'
     } else {
-      return '#2952BD'
+      // 鮮やかな青からライトブルーへのグラデーション
+      return 'linear-gradient(135deg, #2952BD 0%, #537BC4 50%, #7FA6DB 100%)'
     }
   }
   return (
@@ -135,7 +139,7 @@ const BoothInfo = ({ booth }: { booth: Booth }) => {
         bg={
           booth.status === 'open'
             ? waitingTimeToColor(booth.waiting)
-            : '#1B1B23'
+            : 'linear-gradient(135deg, #1B1B23 0%, #23232b 100%)'
         }
         borderRadius='10px'
         display='flex'

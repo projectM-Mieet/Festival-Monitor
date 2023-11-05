@@ -6,12 +6,15 @@ import axios from 'axios'
 import dayjs from 'dayjs'
 import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
+
+// Extensions and configurations
 dayjs.extend(utc)
 dayjs.extend(timezone)
 dayjs.tz.setDefault('Asia/Tokyo')
 
-import BoothInfo from '@/components/BoothInfo'
-import EventInfo from '@/components/EventInfo'
+// Your internal project modules
+import BoothItem from '@/components/BoothItem'
+import EventItem from '@/components/EentItem'
 import Loading from '@/components/Loading'
 import { monitorSettings } from '@/libs/constants'
 import { db } from '@/libs/firebaseAdmin'
@@ -133,7 +136,11 @@ export default function Home({ events }: { events: Event[] }) {
                 ) : (
                   <>
                     {upcomingEvents.slice(0, 7).map((event: any, i: any) => (
-                      <EventInfo key={i} event={event} />
+                      <EventItem
+                        key={`${index}-${i}`}
+                        event={event}
+                        delay={i * 80}
+                      />
                     ))}
                   </>
                 )}
@@ -154,19 +161,23 @@ export default function Home({ events }: { events: Event[] }) {
                   <Box flex={['0', '1', '1']} pr={[0, 2, 2]}>
                     {booths
                       .slice(index * 14, index * 14 + 7)
-                      .map((booth: Booth, i: any) => (
-                        <Box key={i} mb={[20, 4]}>
-                          <BoothInfo booth={booth} />
-                        </Box>
+                      .map((booth: Booth, i: number) => (
+                        <BoothItem
+                          key={`${index}-${i}`}
+                          booth={booth}
+                          delay={i * 80}
+                        />
                       ))}
                   </Box>
                   <Box flex={['0', '1', '1']} pl={[0, 2, 2]}>
                     {booths
                       .slice(index * 14 + 7, index * 14 + 14)
-                      .map((booth: Booth, i: any) => (
-                        <Box key={i} mb={[20, 4]}>
-                          <BoothInfo booth={booth} />
-                        </Box>
+                      .map((booth: Booth, i: number) => (
+                        <BoothItem
+                          key={`${index}-${i}`}
+                          booth={booth}
+                          delay={i * 80}
+                        />
                       ))}
                   </Box>
                 </Flex>
